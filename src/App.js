@@ -3,13 +3,17 @@ import HomePage from "./pages/HomePage/HomePage"
 import SeatsPage from "./pages/SeatsPage/SeatsPage"
 import SessionsPage from "./pages/SessionsPage/SessionsPage"
 import SuccessPage from "./pages/SuccessPage/SuccessPage"
+import { useState } from "react"
 
 export default function App() {
+
+    const[movies,setMovies]= useState([]);
+
     return (
         <>
            <NavContainer>CINEFLEX</NavContainer>
 
-            {/* <HomePage /> */}
+            {<HomePage  movies={movies} setMovies={setMovies}/>}
             {/* <SeatsPage /> */}
             <SessionsPage />
             {/* <SuccessPage /> */}
