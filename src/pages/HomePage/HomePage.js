@@ -4,6 +4,7 @@ import axios from "axios";
 
 export default function HomePage(props) {
 
+
         useEffect(() => {
             const promiseMovies = axios.get("https://mock-api.driven.com.br/api/v8/cineflex/movies");
     
@@ -13,10 +14,10 @@ export default function HomePage(props) {
         }, []);
 
     return (
-        <PageContainer movies={props.movies}>
+        <PageContainer >
             Selecione o filme
 
-            <ListContainer movies={props.movies}>{props.movies.map((i)=> <MovieContainer movies={props.movies}><img src={i}/></MovieContainer>)}
+            <ListContainer >{props.movies.map((i)=> <MovieContainer><img src={i}/></MovieContainer>)}
             </ListContainer>
 
         </PageContainer>
