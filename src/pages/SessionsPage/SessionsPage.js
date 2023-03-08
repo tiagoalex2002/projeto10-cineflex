@@ -1,6 +1,15 @@
 import styled from "styled-components"
+import axios from "axios";
+import { useEffect } from "react";
 
-export default function SessionsPage() {
+export default function SessionsPage(props) {
+    useEffect(() => {
+        const promiseSessions = axios.get("https://mock-api.driven.com.br/api/v8/cineflex/movies");
+
+        promiseSessions.then(resposta => {
+            props.setMovies(resposta.data);
+        });
+    }, []);
 
     return (
         <PageContainer>

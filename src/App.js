@@ -9,15 +9,16 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 export default function App() {
 
     const[movies,setMovies]= useState([]);
+    const [sessions,setSessions]=useState([]);
 
     return (
         <BrowserRouter>
            <NavContainer>CINEFLEX</NavContainer>
             <Routes>
                <Route path="/" element={<HomePage movies={movies} setMovies={setMovies}/>}/>
-               {/* <SeatsPage /> */}
+               <Route path="/assentos/:idSessao" element={<SeatsPage sessions={sessions} setSessions={setSessions}/>}/>
                <Route  path="/sessoes/:idFilme" element={<SessionsPage/>} />
-               {/* <SuccessPage /> */}
+               <Route path="/sucesso" element={<SuccessPage/>}/>
             </Routes>
             
         </BrowserRouter>

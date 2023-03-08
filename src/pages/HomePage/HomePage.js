@@ -9,7 +9,7 @@ export default function HomePage(props) {
             const promiseMovies = axios.get("https://mock-api.driven.com.br/api/v8/cineflex/movies");
     
             promiseMovies.then(resposta => {
-                props.setMovies(resposta.data.posterURL);
+                props.setMovies(resposta.data);
             });
         }, []);
 
@@ -17,7 +17,7 @@ export default function HomePage(props) {
         <PageContainer >
             Selecione o filme
 
-            <ListContainer >{props.movies.map((i)=> <MovieContainer><img src={i}/></MovieContainer>)}
+            <ListContainer >{props.movies.map((i)=> <MovieContainer><img src={i.posterURL}/></MovieContainer>)}
             </ListContainer>
 
         </PageContainer>
