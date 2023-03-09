@@ -1,8 +1,12 @@
 import styled from "styled-components"
 import { useState, useEffect } from 'react';
 import axios from "axios";
+import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import SessionsPage from "../SessionsPage/SessionsPage";
 
 export default function HomePage(props) {
+
 
 
         useEffect(() => {
@@ -17,7 +21,7 @@ export default function HomePage(props) {
         <PageContainer >
             Selecione o filme
 
-            <ListContainer >{props.movies.map((i)=> <MovieContainer><img src={i.posterURL}/></MovieContainer>)}
+            <ListContainer >{props.movies.map((i)=> <MovieContainer><Link to={`/sessoes/${i.id}`}><img src={i.posterURL}/></Link></MovieContainer>)}
             </ListContainer>
 
         </PageContainer>
