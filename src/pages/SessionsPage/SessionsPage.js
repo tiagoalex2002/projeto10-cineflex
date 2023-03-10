@@ -1,51 +1,34 @@
 import styled from "styled-components"
 import axios from "axios";
 import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 export default function SessionsPage(props) {
+
+    const params=useParams();
+
+
     useEffect(() => {
-        const promiseSessions = axios.get("https://mock-api.driven.com.br/api/v8/cineflex/movies");
+        const promiseSessions = axios.get(`https://mock-api.driven.com.br/api/v8/cineflex/movies/${params}/showtimes`);
 
         promiseSessions.then(resposta => {
-            props.setMovies(resposta.data);
+            props.setSessions(resposta.data);
         });
     }, []);
+
 
     return (
         <PageContainer>
             Selecione o horário
-            <div>
-                <SessionContainer>
-                    Sexta - 03/03/2023
-                    <ButtonsContainer>
-                        <button>14:00</button>
-                        <button>15:00</button>
-                    </ButtonsContainer>
-                </SessionContainer>
-
-                <SessionContainer>
-                    Sexta - 03/03/2023
-                    <ButtonsContainer>
-                        <button>14:00</button>
-                        <button>15:00</button>
-                    </ButtonsContainer>
-                </SessionContainer>
-
-                <SessionContainer>
-                    Sexta - 03/03/2023
-                    <ButtonsContainer>
-                        <button>14:00</button>
-                        <button>15:00</button>
-                    </ButtonsContainer>
-                </SessionContainer>
+            <div>{props.sessions.days.map((i)=><SessionContainer>{i.weekday} - {i.date}<ButtonsContainer>{props.sessions.days.showtimes.map((h)=> <button>{h.name}</button>)}</ButtonsContainer></SessionContainer>)}
             </div>
 
             <FooterContainer>
                 <div>
-                    <img src={"https://br.web.img2.acsta.net/pictures/22/05/16/17/59/5165498.jpg"} alt="poster" />
+                    <img src={props.sessions.posterURL} alt="poster" />
                 </div>
                 <div>
-                    <p>Tudo em todo lugar ao mesmo tempo</p>
+                    <p>{props.sessions.title}</p>
                 </div>
             </FooterContainer>
 
