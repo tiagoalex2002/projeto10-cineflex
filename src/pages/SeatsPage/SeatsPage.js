@@ -30,6 +30,7 @@ export default function SeatsPage(props) {
         const CPF=cpf.value
 
         const object= { ids: props.selecionados, name:NOM, cpf:CPF}
+        console.log(object)
         {props.setObjeto(object)}
 
         useEffect(() => {const promiseReserve=axios.post("https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many",object) ;

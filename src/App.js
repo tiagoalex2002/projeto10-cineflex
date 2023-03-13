@@ -12,7 +12,7 @@ export default function App() {
     const [sessions,setSessions]=useState([]);
     const [assentos,setAssentos]=useState([])
     const [selecionados,setSelecionados]=useState([])
-    const [objeto, setObjeto]= useState()
+    const [objeto, setObjeto]= useState({})
     const [date,setDate]= useState();
 
     return (
