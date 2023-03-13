@@ -2,25 +2,29 @@ import styled from "styled-components"
 import axios from "axios";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function SessionsPage(props) {
 
     const params=useParams();
+    console.log(params)
 
 
     useEffect(() => {
-        const promiseSessions = axios.get(`https://mock-api.driven.com.br/api/v8/cineflex/movies/${params}/showtimes`);
-
+        const promiseSessions = axios.get(`https://mock-api.driven.com.br/api/v8/cineflex/movies/${params.idFilme}/showtimes`);
+        console.log(promiseSessions)
         promiseSessions.then(resposta => {
             props.setSessions(resposta.data);
         });
     }, []);
 
 
+
+
     return (
         <PageContainer>
             Selecione o horário
-            <div>{props.sessions.days.map((i)=><SessionContainer>{i.weekday} - {i.date}<ButtonsContainer>{props.sessions.days.showtimes.map((h)=> <button>{h.name}</button>)}</ButtonsContainer></SessionContainer>)}
+            <div>{props.sessions && props.sessions.days && props.sessions.days.map((i)=><SessionContainer>{i.weekday} - {i.date}<ButtonsContainer>{i.showtimes.map((h)=><button><Link to={`/assentos/${h.id}`}>{h.name}</Link></button>)}</ButtonsContainer></SessionContainer>)}
             </div>
 
             <FooterContainer>
