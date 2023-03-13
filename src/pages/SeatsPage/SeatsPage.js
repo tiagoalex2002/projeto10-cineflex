@@ -18,8 +18,21 @@ export default function SeatsPage(props) {
     }, []);
 
     console.log(props.assentos)
-    console.log(props.assentos.seats)
     const lista= props.assentos.seats
+    console.log(lista)
+
+    function Reservation(event){
+        event.preventDefault()
+
+        const nom= document.querySelector("#buyer")
+        const cpf= document.querySelector("#reg")
+        const NOM= nom.value
+        const CPF=cpf.value
+
+        const object= { name:NOM, cpf:CPF}
+
+        const promisseReserve=axios.post("https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many",object)
+    }
 
 
 
@@ -30,7 +43,7 @@ export default function SeatsPage(props) {
         <PageContainer>
             Selecione o(s) assento(s)
 
-            <SeatsContainer>{lista.map((c)=>  (<SeatItem>{c.name}</SeatItem>))} </SeatsContainer>
+            <SeatsContainer>{lista?.map((c)=>  (<SeatItem>{c.name}</SeatItem>))}</SeatsContainer>
 
             <CaptionContainer>
                 <CaptionItem>
@@ -47,23 +60,23 @@ export default function SeatsPage(props) {
                 </CaptionItem>
             </CaptionContainer>
 
-            <FormContainer>
+            <FormContainer onSubmit={Reservation}>
                 Nome do Comprador:
-                <input placeholder="Digite seu nome..." />
+                <input id="buyer" placeholder="Digite seu nome..." />
 
                 CPF do Comprador:
-                <input placeholder="Digite seu CPF..." />
+                <input id="reg" placeholder="Digite seu CPF..." />
 
-                <button>Reservar Assento(s)</button>
+                <Link to={`/sucesso`}><button id="btn">Reservar Assento(s)</button></Link>
             </FormContainer>
 
             <FooterContainer>
                 <div>
-                    <img src={"https://br.web.img2.acsta.net/pictures/22/05/16/17/59/5165498.jpg"} alt="poster" />
+                    <img src={props.assentos.movie?.posterURL} alt="poster" />
                 </div>
                 <div>
-                    <p>Tudo em todo lugar ao mesmo tempo</p>
-                    <p>Sexta - 14h00</p>
+                    <p>{props.assentos.movie?.title}</p>
+                    <p>{props.assentos.day?.weekday} - {props.assentos.name}</p>
                 </div>
             </FooterContainer>
 
