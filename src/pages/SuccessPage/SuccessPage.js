@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export default function SuccessPage() {
+export default function SuccessPage(props) {
 
     return (
         <PageContainer>
@@ -8,7 +8,7 @@ export default function SuccessPage() {
 
             <TextContainer  data-test="movie-info">
                 <strong><p>Filme e sessão</p></strong>
-                <p>Tudo em todo lugar ao mesmo tempo</p>
+                <p>{props.objeto.name}</p>
                 <p>03/03/2023 - 14:00</p>
             </TextContainer>
 
@@ -21,8 +21,8 @@ export default function SuccessPage() {
 
             <TextContainer data-test="client-info">
                 <strong><p>Comprador</p></strong>
-                <p>Nome: Letícia Chijo</p>
-                <p>CPF: 123.456.789-10</p>
+                <p>Nome: {props.objeto.name}</p>
+                <p>CPF: {props.objeto.cpf}</p>
             </TextContainer>
 
             <button data-test="go-home-btn" >Voltar para Home</button>

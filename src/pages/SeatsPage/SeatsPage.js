@@ -31,7 +31,12 @@ export default function SeatsPage(props) {
 
         const object= { ids: props.selecionados, name:NOM, cpf:CPF}
 
-        const promisseReserve=axios.post("https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many",object)
+        useEffect(() => {const promiseReserve=axios.post("https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many",object) ;
+            promiseReserve.then(resposta => {
+                props.setObjeto(resposta.data);
+            });
+        }, []);
+        
     }
 
 
