@@ -30,11 +30,9 @@ export default function SeatsPage(props) {
         const CPF=cpf.value
 
         const object= { ids: props.selecionados, name:NOM, cpf:CPF}
+        {props.setObjeto(object)}
 
         useEffect(() => {const promiseReserve=axios.post("https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many",object) ;
-            promiseReserve.then(resposta => {
-                props.setObjeto(resposta.data);
-            });
         }, []);
         
     }
@@ -42,6 +40,7 @@ export default function SeatsPage(props) {
 
     function Selection(item){
         {props.setSelecionados(item.id)}
+        {props.setDate(props.assentos.day?.weekday)}
     }
 
 
@@ -58,15 +57,15 @@ export default function SeatsPage(props) {
 
             <CaptionContainer>
                 <CaptionItem>
-                    <CaptionCircle />
+                    <CaptionCircle1 />
                     Selecionado
                 </CaptionItem>
                 <CaptionItem>
-                    <CaptionCircle />
+                    <CaptionCircle2 />
                     Disponível
                 </CaptionItem>
                 <CaptionItem>
-                    <CaptionCircle />
+                    <CaptionCircle3 />
                     Indisponível
                 </CaptionItem>
             </CaptionContainer>
@@ -137,7 +136,18 @@ const CaptionContainer = styled.div`
     justify-content: space-between;
     margin: 20px;
 `
-const CaptionCircle = styled.div`
+const CaptionCircle1 = styled.div`
+    border: 1px solid #0E7D71;        // Essa cor deve mudar
+    background-color: #1AAE9E;    // Essa cor deve mudar
+    height: 25px;
+    width: 25px;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px 3px;
+`
+const CaptionCircle2 = styled.div`
     border: 1px solid blue;         // Essa cor deve mudar
     background-color: lightblue;    // Essa cor deve mudar
     height: 25px;
@@ -148,6 +158,18 @@ const CaptionCircle = styled.div`
     justify-content: center;
     margin: 5px 3px;
 `
+const CaptionCircle3 = styled.div`
+    background: #FBE192;
+    border: 1px solid #F7C52B;
+    height: 25px;
+    width: 25px;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px 3px;
+`
+
 const CaptionItem = styled.div`
     display: flex;
     flex-direction: column;

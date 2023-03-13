@@ -8,8 +8,8 @@ export default function SuccessPage(props) {
 
             <TextContainer  data-test="movie-info">
                 <strong><p>Filme e sessão</p></strong>
-                <p>{props.objeto.name}</p>
-                <p>03/03/2023 - 14:00</p>
+                <p>{props.assentos.movie?.title}</p>
+                <p>{props.assentos.day?.weekday} - {props.assentos.name}</p>
             </TextContainer>
 
             <TextContainer data-test="seats-info">

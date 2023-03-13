@@ -12,7 +12,8 @@ export default function App() {
     const [sessions,setSessions]=useState([]);
     const [assentos,setAssentos]=useState([])
     const [selecionados,setSelecionados]=useState([])
-    const [objeto, setObjeto]= useState({})
+    const [objeto, setObjeto]= useState()
+    const [date,setDate]= useState();
 
     return (
         <BrowserRouter>
@@ -21,8 +22,8 @@ export default function App() {
                <Route path="/" element={<HomePage movies={movies} setMovies={setMovies}/>}/>
                <Route path="/sessoes/:idFilme" element={<SessionsPage  sessions={sessions} setSessions={setSessions}/>} />
                <Route path="/assentos/:idSessao" element={<SeatsPage assentos={assentos} setAssentos={setAssentos} selecionados={selecionados} setSelecionados={setSelecionados}
-               objeto={objeto} setObjeto={setObjeto}/>}/>
-               <Route path="/sucesso" element={<SuccessPage objeto={objeto}/>}/>
+               objeto={objeto} setObjeto={setObjeto} date={date} setDate={setDate}/>}/>
+               <Route path="/sucesso" element={<SuccessPage objeto={objeto} date={date} assentos={assentos} />}/>
             </Routes>
             
         </BrowserRouter>
