@@ -12,13 +12,15 @@ export default function SeatsPage(props) {
 
     useEffect(() => {
         const promiseSeats = axios.get(`https://mock-api.driven.com.br/api/v8/cineflex/showtimes/${params.idSessao}/seats`);
-        console.log(promiseSeats)
         promiseSeats.then(resposta => {
             props.setAssentos(resposta.data);
         });
     }, []);
 
     console.log(props.assentos)
+    console.log(props.assentos.seats)
+    const lista= props.assentos.seats
+
 
 
 
@@ -28,9 +30,7 @@ export default function SeatsPage(props) {
         <PageContainer>
             Selecione o(s) assento(s)
 
-            <SeatsContainer>
-                {props.assentos && props.assentos.seats.map((c)=>  (<SeatItem>{c.name}</SeatItem>))}
-            </SeatsContainer>
+            <SeatsContainer>{lista.map((c)=>  (<SeatItem>{c.name}</SeatItem>))} </SeatsContainer>
 
             <CaptionContainer>
                 <CaptionItem>
