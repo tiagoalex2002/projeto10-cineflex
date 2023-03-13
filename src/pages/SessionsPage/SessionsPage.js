@@ -24,10 +24,10 @@ export default function SessionsPage(props) {
     return (
         <PageContainer>
             Selecione o horário
-            <div>{props.sessions && props.sessions.days && props.sessions.days.map((i)=><SessionContainer>{i.weekday} - {i.date}<ButtonsContainer>{i.showtimes.map((h)=><button><Link to={`/assentos/${h.id}`}>{h.name}</Link></button>)}</ButtonsContainer></SessionContainer>)}
+            <div>{props.sessions && props.sessions.days && props.sessions.days.map((i)=><SessionContainer data-test="movie-day">{i.weekday} - {i.date}<ButtonsContainer>{i.showtimes.map((h)=><button data-test="showtimes"><Link to={`/assentos/${h.id}`}>{h.name}</Link></button>)}</ButtonsContainer></SessionContainer>)}
             </div>
 
-            <FooterContainer>
+            <FooterContainer data-test="footer">
                 <div>
                     <img src={props.sessions.posterURL} alt="poster" />
                 </div>

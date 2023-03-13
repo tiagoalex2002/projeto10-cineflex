@@ -21,7 +21,7 @@ export default function HomePage(props) {
         <PageContainer >
             Selecione o filme
 
-            <ListContainer >{props.movies.map((i)=> <MovieContainer><Link to={`/sessoes/${i.id}`}><img src={i.posterURL}/></Link></MovieContainer>)}
+            <ListContainer >{props.movies.map((i)=> <MovieContainer data-test="movie"><Link to={`/sessoes/${i.id}`}><img src={i.posterURL}/></Link></MovieContainer>)}
             </ListContainer>
 
         </PageContainer>

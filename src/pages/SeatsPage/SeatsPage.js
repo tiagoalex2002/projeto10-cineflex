@@ -29,10 +29,16 @@ export default function SeatsPage(props) {
         const NOM= nom.value
         const CPF=cpf.value
 
-        const object= { name:NOM, cpf:CPF}
+        const object= { ids: props.selecionados, name:NOM, cpf:CPF}
 
         const promisseReserve=axios.post("https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many",object)
     }
+
+
+    function Selection(item){
+        {props.setSelecionados(item.id)}
+    }
+
 
 
 
@@ -43,7 +49,7 @@ export default function SeatsPage(props) {
         <PageContainer>
             Selecione o(s) assento(s)
 
-            <SeatsContainer>{lista?.map((c)=>  (<SeatItem>{c.name}</SeatItem>))}</SeatsContainer>
+            <SeatsContainer>{lista?.map((c)=>  (<SeatItem data-test="seat" onClick={() => Selection(c)}>{c.name}</SeatItem>))}</SeatsContainer>
 
             <CaptionContainer>
                 <CaptionItem>
@@ -62,15 +68,15 @@ export default function SeatsPage(props) {
 
             <FormContainer onSubmit={Reservation}>
                 Nome do Comprador:
-                <input id="buyer" placeholder="Digite seu nome..." />
+                <input id="buyer" data-test="client-name" placeholder="Digite seu nome..." />
 
                 CPF do Comprador:
-                <input id="reg" placeholder="Digite seu CPF..." />
+                <input id="reg" data-test="client-cpf" placeholder="Digite seu CPF..." />
 
                 <Link to={`/sucesso`}><button id="btn">Reservar Assento(s)</button></Link>
             </FormContainer>
 
-            <FooterContainer>
+            <FooterContainer data-test="footer">
                 <div>
                     <img src={props.assentos.movie?.posterURL} alt="poster" />
                 </div>
@@ -143,7 +149,7 @@ const CaptionItem = styled.div`
     align-items: center;
     font-size: 12px;
 `
-const SeatItem = styled.div`
+const SeatItem = styled.button`
     border: 1px solid blue;         // Essa cor deve mudar
     background-color: lightblue;    // Essa cor deve mudar
     height: 25px;
